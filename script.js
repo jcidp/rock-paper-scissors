@@ -14,7 +14,6 @@ function playRound(playerSelection, computerSelection) {
     // Clean playerSelection
     let cleanPlayerSelection = playerSelection[0].toUpperCase() +
         playerSelection.slice(1).toLowerCase();
-    console.log(cleanPlayerSelection);
     switch(cleanPlayerSelection) {
         case "Rock":
             switch(computerSelection) {
