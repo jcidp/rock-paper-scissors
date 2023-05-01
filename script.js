@@ -19,7 +19,7 @@ function playRound(playerSelection, computerSelection) {
         case "Rock":
             switch(computerSelection) {
                 case "Rock":
-                    return "Draw! Rock equals Rock";
+                    return "You Draw! Rock equals Rock";
                 case "Paper":
                     return "You Lose! Paper beats Rock";
                 case "Scissors":
@@ -30,7 +30,7 @@ function playRound(playerSelection, computerSelection) {
                 case "Rock":
                     return "You Win! Paper beats Rock";
                 case "Paper":
-                    return "Draw! Paper equals Paper";
+                    return "You Draw! Paper equals Paper";
                 case "Scissors":
                     return "You Lose! Scissors beat Paper";
             }
@@ -41,8 +41,28 @@ function playRound(playerSelection, computerSelection) {
                 case "Paper":
                     return "You Win! Scissors beat Paper";
                 case "Scissors":
-                    return "Draw! Scissors equal Scissors";
+                    return "You Draw! Scissors equal Scissors";
             }
     } 
     return "Invalid input. Please select 'Rock', 'Paper', or 'Scissors'."
+}
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    while (playerScore < 5 && computerScore < 5) {
+        let playerChoice = prompt("Select either: 'Rock', 'Paper', or 'Scissors'");
+        let result = playRound(playerChoice, getComputerChoice());
+        if(result.split(" ")[1] === "Lose!") {
+            computerScore++;
+        } else if (result.split(" ")[1] === "Win!") {
+            playerScore++;
+        }
+        console.log(result);
+    }
+    let winner = playerScore > computerScore ? "You win! Congratulations!" :
+        playerScore < computerScore ? "The computer wins :(" :
+        "It's a draw! Wow!";
+    console.log(winner);
+    return "Play again!";
 }
