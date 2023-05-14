@@ -1,14 +1,18 @@
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll(".choice");
 const playerScoreText = document.querySelector("#player_score");
 const computerScoreText = document.querySelector("#computer_score");
+const computerChoiceText = document.querySelector("#computer_choice");
 const resultText = document.querySelector("#result");
 const winnerText = document.querySelector("#winner");
+const reset = document.querySelector("#reset");
 let playerScore = 0;
 let computerScore = 0;
 
 
 buttons.forEach(btn => btn.addEventListener("click", e => {
-    let result = playRound(e.target.textContent, getComputerChoice());
+    let computerChoice = getComputerChoice();
+    computerChoiceText.textContent = computerChoice;
+    let result = playRound(e.target.textContent, computerChoice);
     resultText.textContent = result;
     if(result.split(" ")[1] === "Lose!") {
         computerScore++;
@@ -23,9 +27,13 @@ buttons.forEach(btn => btn.addEventListener("click", e => {
             "It's a draw! Wow!";
         winnerText.textContent = winner;
         // TODO: Add a reset button with an eventListener to a function that resets the game
+        reset.style.visibility = "visible";
+        buttons.forEach(btn => btn.disabled = true);
     }
     return "Play again!";
 }));
+
+reset.addEventListener("click", resetGame);
 
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3) + 1;
@@ -70,6 +78,18 @@ function playRound(playerSelection, computerSelection) {
             }
     } 
     return "Invalid input. Please select 'Rock', 'Paper', or 'Scissors'."
+}
+
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    playerScoreText.textContent = 0;
+    computerScoreText.textContent = 0;
+    computerChoiceText.textContent = "";
+    resultText.textContent = "";
+    winnerText.textContent = "";
+    reset.style.visibility = "hidden";
+    buttons.forEach(btn => btn.disabled = false);
 }
 
 function game() {

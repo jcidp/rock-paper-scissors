@@ -5,17 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link href="styles.css" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    <div class="container">
-        <p>Player Score: <span id="player_score">0</span></p>
-        <p>Computer Score: <span id="computer_score">0</span></p>
-        <h2 id="result"></h2>
-        <h1 id="winner"></h1>
-    </div>
+    <main>
+        <h1>Rock, Paper, Scissors!</h1>
+        <p class="instructions">Instructions:</p>
+        <ul>
+            <li>Use the buttons below to make your choice</li>
+            <li>You'll play a computer, and we'll show the computer's choice below</li>
+            <li>Whoever wins a round gets a point</li>
+            <li>The first the reach 5 points wins the game</li>
+        </ul>
+        <div class="scores">
+            <p>Player Score: <span id="player_score">0</span></p>
+            <p>Computer Score: <span id="computer_score">0</span></p>
+        </div>
+        <div class="choices">
+            <button class="choice">Rock</button>
+            <button class="choice">Paper</button>
+            <button class="choice">Scissors</button>
+        </div>
+        <div class="container">
+            <p>Computer's Choice: <span id="computer_choice"></span></p>
+            <p id="result"></p>
+            <p id="winner"></p>
+            <button id="reset">Play again</button>
+        </div>
+    </main>
 </body>
 </html>
