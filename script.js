@@ -1,8 +1,30 @@
 const buttons = document.querySelectorAll("button");
+const playerScoreText = document.querySelector("#player_score");
+const computerScoreText = document.querySelector("#computer_score");
+const resultText = document.querySelector("#result");
+const winnerText = document.querySelector("#winner");
+let playerScore = 0;
+let computerScore = 0;
+
 
 buttons.forEach(btn => btn.addEventListener("click", e => {
-    let result = document.querySelector("#result");
-    result.textContent = playRound(e.target.textContent, getComputerChoice());
+    let result = playRound(e.target.textContent, getComputerChoice());
+    resultText.textContent = result;
+    if(result.split(" ")[1] === "Lose!") {
+        computerScore++;
+        computerScoreText.textContent = computerScore;
+    } else if (result.split(" ")[1] === "Win!") {
+        playerScore++;
+        playerScoreText.textContent = playerScore;
+    }
+    if (computerScore === 5 || playerScore === 5) {
+        let winner = playerScore > computerScore ? "You win! Congratulations!" :
+            playerScore < computerScore ? "The computer wins :(" :
+            "It's a draw! Wow!";
+        winnerText.textContent = winner;
+        // TODO: Add a reset button with an eventListener to a function that resets the game
+    }
+    return "Play again!";
 }));
 
 function getComputerChoice() {
@@ -18,10 +40,7 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    // Clean playerSelection
-    let cleanPlayerSelection = playerSelection[0].toUpperCase() +
-        playerSelection.slice(1).toLowerCase();
-    switch(cleanPlayerSelection) {
+    switch(playerSelection) {
         case "Rock":
             switch(computerSelection) {
                 case "Rock":
@@ -56,7 +75,11 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let playerScore = 0;
     let computerScore = 0;
+    let playerScoreText = document.querySelector("#player_score");
+    let computerScoreText = document.querySelector("#computer_score");
     while (playerScore < 5 && computerScore < 5) {
+        playerScoreText.textContent = playerScore;
+        computerScoreText.textContent = computerScore;
         let playerChoice = prompt("Select either: 'Rock', 'Paper', or 'Scissors'");
         let result = playRound(playerChoice, getComputerChoice());
         if(result.split(" ")[1] === "Lose!") {
@@ -64,11 +87,13 @@ function game() {
         } else if (result.split(" ")[1] === "Win!") {
             playerScore++;
         }
-        console.log(result);
+        let resultText = document.querySelector("#result");
+        resultText.textContent = result;
     }
     let winner = playerScore > computerScore ? "You win! Congratulations!" :
         playerScore < computerScore ? "The computer wins :(" :
         "It's a draw! Wow!";
-    console.log(winner);
+    let winnerText = document.querySelector("#winner");
+    winnerText.textContent = winner;
     return "Play again!";
 }
