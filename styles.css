@@ -25,6 +25,10 @@ button {
     flex: 0 1 200px;
 }
 
+.choice:disabled {
+    background-color: dimgray;
+}
+
 .choices {
     display: flex;
     justify-content: space-around;
