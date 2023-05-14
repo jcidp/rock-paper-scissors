@@ -1,3 +1,13 @@
+/* const rock_btn = document.querySelector("#rock");
+const paper_btn = document.querySelector("#paper");
+const scissors_btn = document.querySelector("#scissors"); */
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(btn => btn.addEventListener("click",
+    e => console.log(playRound(e.target.textContent, getComputerChoice()))));
+
+/* rock_btn.addEventListener("click", e => console.log(e.target)); */
+
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3) + 1;
     switch(randomNumber) {
